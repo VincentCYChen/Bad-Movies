@@ -9,21 +9,31 @@ class Search extends React.Component {
       select: 'select'
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    return axios
+    this.getMoviesByGenre();
+  }
+
+  handleChange(e) {
+    this.setState({ select: e.target.value }, () => {
+      console.log('selection genre id ----->', this.state.select);
+      this.getMoviesByGenre(this.state.select);
+    });
+  }
+
+  handleClick() {
+    this.props.getMovies(this.state.select);
+  }
+
+  getMoviesByGenre() {
+    axios
       .get('/movies/genres')
       .then(genres => {
         this.setState({ genres: genres.data });
       })
       .catch(err => console.log(err));
-  }
-
-  handleChange(e) {
-    this.setState({ select: e.target.value }, () =>
-      console.log(this.state.select)
-    );
   }
 
   render() {
@@ -51,7 +61,7 @@ class Search extends React.Component {
         <br />
         <br />
 
-        <button>Search</button>
+        <button onClick={this.handleClick}>Search</button>
       </div>
     );
   }

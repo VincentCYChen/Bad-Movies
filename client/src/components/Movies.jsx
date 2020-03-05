@@ -9,15 +9,6 @@ class Movies extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get('/movies/search')
-      .then(data => {
-        this.setState({ movies: data.data });
-        console.log('movie data!!!', data.data);
-      })
-      .catch(err => console.log(err));
-  }
   // Make an onClick for each list item. If the movies shown is the search results,
   // onClick add it to the database (do it in the main app, and pass down the function)
 
@@ -25,9 +16,10 @@ class Movies extends React.Component {
   // You can tell which list is currently being rendered based on whether the prop "showFaves" is false (search results) or true (fave list) (within index.jsx)
 
   render() {
+    console.log('mount success!! ----> props', this.props);
     return (
       <ul className="movies">
-        {this.state.movies.map(movie => {
+        {this.props.movies.map(movie => {
           return (
             <li className="movie_item">
               <img

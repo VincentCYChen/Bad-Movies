@@ -17,6 +17,13 @@ module.exports = {
       })
       .catch(err => console.log(err));
   },
+  getSearchByGenre: (req, res) => {
+    apiHelpers
+      .getSearchByGenre(req.params.id)
+      .then(data => res.send(data.data.results))
+      .catch(err => console.log(err));
+  },
+
   getGenres: (req, res) => {
     // make an axios request to get the list of official genres
     // use this endpoint, which will also require your API key: https://api.themoviedb.org/3/genre/movie/list
