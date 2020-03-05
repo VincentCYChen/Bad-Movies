@@ -15,14 +15,15 @@ class Search extends React.Component {
     return axios
       .get('/movies/genres')
       .then(genres => {
-        console.log('componendidmount request ------->', genres);
         this.setState({ genres: genres.data });
       })
       .catch(err => console.log(err));
   }
 
   handleChange(e) {
-    this.setState({ select: e.target.value });
+    this.setState({ select: e.target.value }, () =>
+      console.log(this.state.select)
+    );
   }
 
   render() {
@@ -41,6 +42,7 @@ class Search extends React.Component {
         {/* Make the select options dynamic from genres !!! */}
         {/* How can you tell which option has been selected from here? */}
         <select onChange={this.handleChange} value={this.state.select}>
+          <option value="select">Select a genre</option>
           {this.state.genres.map(genre => {
             return <option value={genre.id}>{genre.name}</option>;
           })}
