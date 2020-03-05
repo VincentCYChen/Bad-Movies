@@ -20,7 +20,11 @@ class Movies extends React.Component {
       <ul className="movies">
         {this.props.movies.map(movie => {
           return (
-            <li className="movie_item">
+            <li
+              onClick={() => this.props.saveMovie(movie)}
+              id={movie.id}
+              className="movie_item"
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
               />

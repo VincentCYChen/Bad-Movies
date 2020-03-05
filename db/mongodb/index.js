@@ -12,7 +12,7 @@ const db = mongoose.connection;
 const movieSchema = new mongoose.Schema({
   title: String,
   poster_path: String,
-  release_date: Number,
+  release_date: String,
   vote_average: Number
 });
 

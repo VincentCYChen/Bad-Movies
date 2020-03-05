@@ -38,6 +38,7 @@ module.exports = {
   saveMovie: (req, res) => {
     // Save selected movie as favorite
     movieModel.saveMovie(req.body, (err, movie) => {
+      console.log(req.body);
       if (err) {
         res.sendstatus(500);
       } else {

@@ -16,6 +16,7 @@ class App extends React.Component {
     // you might have to do something important here!
     this.getMovies = this.getMovies.bind(this);
     this.getAllMovies = this.getAllMovies.bind(this);
+    this.saveMovie = this.saveMovie.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +40,15 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
-  saveMovie() {
+  saveMovie(movie) {
     // same as above but do something diff
+    console.log('saveMovie fired!!!', movie);
+    axios.post('/movies/save', {
+      title: movie.title,
+      poster_path: movie.poster_path,
+      release_date: movie.release_date,
+      vote_average: movie.vote_average
+    });
   }
 
   deleteMovie() {
@@ -72,6 +80,7 @@ class App extends React.Component {
               this.state.showFaves ? this.state.favorites : this.state.movies
             }
             showFaves={this.state.showFaves}
+            saveMovie={this.saveMovie}
           />
         </div>
       </div>
