@@ -37,6 +37,13 @@ module.exports = {
   },
   saveMovie: (req, res) => {
     // Save selected movie as favorite
+    movieModel.saveMovie(req.body, (err, movie) => {
+      if (err) {
+        res.sendstatus(500);
+      } else {
+        res.send('success');
+      }
+    });
   },
   deleteMovie: (req, res) => {
     // Remove selected movie as favorite

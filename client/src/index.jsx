@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-// import AnyComponent from './components/filename.jsx'
 import Search from './components/Search.jsx';
 import Movies from './components/Movies.jsx';
 import axios from 'axios';
@@ -17,9 +15,14 @@ class App extends React.Component {
 
     // you might have to do something important here!
     this.getMovies = this.getMovies.bind(this);
+    this.getAllMovies = this.getAllMovies.bind(this);
   }
 
   componentDidMount() {
+    this.getAllMovies();
+  }
+
+  getAllMovies() {
     axios
       .get('/movies/search')
       .then(data => {

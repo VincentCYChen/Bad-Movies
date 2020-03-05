@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 class Movies extends React.Component {
   constructor(props) {
@@ -34,7 +33,7 @@ class Movies extends React.Component {
                   </div>
                   <div className="movie_rating">
                     <span className="title">Rating</span>
-                    <span>10.0</span>
+                    <span>{movie.vote_average}</span>
                   </div>
                 </section>
               </div>
