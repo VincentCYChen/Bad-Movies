@@ -69,21 +69,10 @@ class App extends React.Component {
       .delete(`/movies/delete/${movie.id}`)
       .then(
         this.setState({
-          favorites: this.updateDeletedMovie(this.state.favorites, movie.id)
+          favorites: this.state.favorites.filter(value => value.id !== movie.id)
         })
       )
       .catch(err => console.log(err));
-  }
-
-  updateDeletedMovie(movies, id) {
-    let results = [];
-
-    for (let i = 0; i < movies.length; i++) {
-      if (movies[i].id !== id) {
-        results.push(movies[i]);
-      }
-    }
-    return results;
   }
 
   swapFavorites() {
