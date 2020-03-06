@@ -19,7 +19,6 @@ class Search extends React.Component {
 
   handleChange(e) {
     this.setState({ select: e.target.value }, () => {
-      console.log('selection genre id ----->', this.state.select);
       this.getMoviesByGenre(this.state.select);
     });
   }

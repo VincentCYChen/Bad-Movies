@@ -9,7 +9,6 @@ module.exports = {
   // get...
   // crud
   saveMovie: (data, callback) => {
-    console.log(data);
     let movie = new favMovies({
       api_id: data.api_id,
       title: data.title,
@@ -30,7 +29,6 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log(movies);
         callback(null, movies);
       }
     });

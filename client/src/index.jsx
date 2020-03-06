@@ -46,7 +46,6 @@ class App extends React.Component {
     axios
       .get('/movies/favs')
       .then(data => {
-        console.log('data--->', data);
         this.setState({ favorites: data.data });
       })
       .catch(err => console.log(err));
@@ -54,7 +53,6 @@ class App extends React.Component {
 
   saveMovie(movie) {
     // same as above but do something diff
-    console.log('saveMovie fired!!!', movie);
     axios.post('/movies/save', {
       api_id: movie.id,
       title: movie.title,

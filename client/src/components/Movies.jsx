@@ -15,8 +15,6 @@ class Movies extends React.Component {
   // You can tell which list is currently being rendered based on whether the prop "showFaves" is false (search results) or true (fave list) (within index.jsx)
 
   render() {
-    console.log(this.props.showFaves);
-    console.log(this.props.favorites);
     return (
       <ul className="movies">
         {this.props.movies.map(movie => {

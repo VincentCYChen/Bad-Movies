@@ -38,7 +38,6 @@ module.exports = {
   saveMovie: (req, res) => {
     // Save selected movie as favorite
     movieModel.saveMovie(req.body, (err, movie) => {
-      console.log(req.body);
       if (err) {
         res.sendstatus(500);
       } else {
@@ -51,7 +50,6 @@ module.exports = {
       if (err) {
         console.log(err);
       } else {
-        console.log('I got back safe ---->', movies);
         res.send(movies);
       }
     });
