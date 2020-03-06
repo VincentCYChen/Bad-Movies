@@ -65,7 +65,25 @@ class App extends React.Component {
 
   deleteMovie(movie) {
     // same as above but do something diff
-    axios.delete(`/movies/delete/${movie.id}`);
+    axios
+      .delete(`/movies/delete/${movie.id}`)
+      .then(
+        this.setState({
+          favorites: this.updateDeletedMovie(this.state.favorites, movie.id)
+        })
+      )
+      .catch(err => console.log(err));
+  }
+
+  updateDeletedMovie(movies, id) {
+    let results = [];
+
+    for (let i = 0; i < movies.length; i++) {
+      if (movies[i].id !== id) {
+        results.push(movies[i]);
+      }
+    }
+    return results;
   }
 
   swapFavorites() {
