@@ -20,7 +20,11 @@ class Movies extends React.Component {
         {this.props.movies.map(movie => {
           return (
             <li
-              onClick={() => this.props.saveMovie(movie)}
+              onClick={() => {
+                this.props.showFaves
+                  ? this.props.deleteMovie(movie)
+                  : this.props.saveMovie(movie);
+              }}
               id={movie.id}
               className="movie_item"
             >

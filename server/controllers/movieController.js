@@ -56,5 +56,12 @@ module.exports = {
   },
   deleteMovie: (req, res) => {
     // Remove selected movie as favorite
+    movieModel.deleteMovie(req.params.id, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send('success');
+      }
+    });
   }
 };

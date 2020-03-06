@@ -19,6 +19,7 @@ class App extends React.Component {
     this.saveMovie = this.saveMovie.bind(this);
     this.getFavMovies = this.getFavMovies.bind(this);
     this.swapFavorites = this.swapFavorites.bind(this);
+    this.deleteMovie = this.deleteMovie.bind(this);
   }
 
   componentDidMount() {
@@ -54,7 +55,7 @@ class App extends React.Component {
   saveMovie(movie) {
     // same as above but do something diff
     axios.post('/movies/save', {
-      api_id: movie.id,
+      id: movie.id,
       title: movie.title,
       poster_path: movie.poster_path,
       release_date: movie.release_date,
@@ -62,8 +63,9 @@ class App extends React.Component {
     });
   }
 
-  deleteMovie() {
+  deleteMovie(movie) {
     // same as above but do something diff
+    axios.delete(`/movies/delete/${movie.id}`);
   }
 
   swapFavorites() {
@@ -93,6 +95,7 @@ class App extends React.Component {
             }
             showFaves={this.state.showFaves}
             saveMovie={this.saveMovie}
+            deleteMovie={this.deleteMovie}
           />
         </div>
       </div>

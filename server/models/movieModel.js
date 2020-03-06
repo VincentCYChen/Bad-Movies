@@ -10,7 +10,7 @@ module.exports = {
   // crud
   saveMovie: (data, callback) => {
     let movie = new favMovies({
-      api_id: data.api_id,
+      id: data.id,
       title: data.title,
       poster_path: data.poster_path,
       release_date: data.release_date,
@@ -18,7 +18,7 @@ module.exports = {
     });
     movie.save((err, movie) => {
       if (err) {
-        console.log(err);
+        callback(err);
       } else {
         callback(null, movie);
       }
@@ -27,11 +27,15 @@ module.exports = {
   getMovie: callback => {
     favMovies.find((err, movies) => {
       if (err) {
-        console.log(err);
+        callback(err);
       } else {
         callback(null, movies);
       }
     });
   },
-  deleteMovie: () => {}
+  deleteMovie: (id, callback) => {
+    favMovies.deleteOne({ id: id }, err => {
+      callback(err);
+    });
+  }
 };
