@@ -46,6 +46,16 @@ module.exports = {
       }
     });
   },
+  getFavs: (req, res) => {
+    movieModel.getMovie((err, movies) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('I got back safe ---->', movies);
+        res.send(movies);
+      }
+    });
+  },
   deleteMovie: (req, res) => {
     // Remove selected movie as favorite
   }

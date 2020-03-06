@@ -10,6 +10,7 @@ class Search extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleFavClick = this.handleFavClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Search extends React.Component {
     this.props.getMovies(this.state.select);
   }
 
+  handleFavClick() {
+    this.props.getFavMovies();
+  }
+
   getMoviesByGenre() {
     axios
       .get('/movies/genres')
@@ -42,6 +47,7 @@ class Search extends React.Component {
         <button
           onClick={() => {
             this.props.swapFavorites();
+            this.handleFavClick();
           }}
         >
           {this.props.showFaves ? 'Show Results' : 'Show Favorites'}

@@ -9,7 +9,9 @@ module.exports = {
   // get...
   // crud
   saveMovie: (data, callback) => {
+    console.log(data);
     let movie = new favMovies({
+      api_id: data.api_id,
       title: data.title,
       poster_path: data.poster_path,
       release_date: data.release_date,
@@ -20,6 +22,16 @@ module.exports = {
         console.log(err);
       } else {
         callback(null, movie);
+      }
+    });
+  },
+  getMovie: callback => {
+    favMovies.find((err, movies) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(movies);
+        callback(null, movies);
       }
     });
   },

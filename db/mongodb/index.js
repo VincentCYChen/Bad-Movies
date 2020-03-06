@@ -10,6 +10,7 @@ if (process.env.MONGODB_URI) {
 const db = mongoose.connection;
 
 const movieSchema = new mongoose.Schema({
+  api_id: { type: Number, unique: true },
   title: String,
   poster_path: String,
   release_date: String,

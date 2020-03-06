@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movies: [],
-      favorites: [{ deway: 'favorites' }],
+      favorites: [],
       showFaves: false
     };
 
@@ -17,6 +17,8 @@ class App extends React.Component {
     this.getMovies = this.getMovies.bind(this);
     this.getAllMovies = this.getAllMovies.bind(this);
     this.saveMovie = this.saveMovie.bind(this);
+    this.getFavMovies = this.getFavMovies.bind(this);
+    this.swapFavorites = this.swapFavorites.bind(this);
   }
 
   componentDidMount() {
@@ -40,10 +42,21 @@ class App extends React.Component {
       .catch(err => console.log(err));
   }
 
+  getFavMovies() {
+    axios
+      .get('/movies/favs')
+      .then(data => {
+        console.log('data--->', data);
+        this.setState({ favorites: data.data });
+      })
+      .catch(err => console.log(err));
+  }
+
   saveMovie(movie) {
     // same as above but do something diff
     console.log('saveMovie fired!!!', movie);
     axios.post('/movies/save', {
+      api_id: movie.id,
       title: movie.title,
       poster_path: movie.poster_path,
       release_date: movie.release_date,
@@ -74,6 +87,7 @@ class App extends React.Component {
             swapFavorites={this.swapFavorites}
             showFaves={this.state.showFaves}
             getMovies={this.getMovies}
+            getFavMovies={this.getFavMovies}
           />
           <Movies
             movies={
